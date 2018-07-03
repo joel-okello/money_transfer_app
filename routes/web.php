@@ -11,18 +11,29 @@
 |
 */
 
+Auth::routes();
+
 Route::get('/', function () {
     return view('login');
 });
+
 Route::resource('contacts', 'ContactsController');
-Auth::routes();
+Route::resource('account', 'AccountController');
 Route::get('/register', function () {
     return view('register');
 });
 
-Route::get('/contacts', function () {
-    return view('contacts');
+
+Route::get('/account_edit', function () {
+    return view('account_edit_add')->with('account');
 });
+
+Route::get('/contact_edit', function () {
+    return view('contact_edit_add')->with('contact');
+});
+
+
+
 Route::get('/transactions', function () {
     return view('transactions');
 });

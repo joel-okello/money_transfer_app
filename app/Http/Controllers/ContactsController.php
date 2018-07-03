@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+Use DB;
+Use App\User;
+Use App\Contacts;
 
 class ContactsController extends Controller
 {
@@ -14,7 +17,13 @@ class ContactsController extends Controller
      */
     public function index()
     {
-        //
+        $account = null;
+        $id = null;   
+         $contacts = DB::table('users')->where('created_by', '=', Auth::user()->id)
+            ->leftJoin('accounts',   'accounts.user_id',  '=', 'users.id')
+            ->select('users.*', 'accounts.*')
+            ->get()->toArray();        
+        return view('contacts',compact('contacts','contact','id'));
     }
 
     /**
@@ -35,13 +44,12 @@ class ContactsController extends Controller
      */
      public function store(Request $request)
     {
-            
            
         $this->validate($request,['country' => 'required|string|max:255',
             'phonenumber' => 'required|string|max:255',
             'fname' => 'required|string|max:255',
             'lname' => 'required|string|max:255',
-            'email' => 'string|email|max:255|unique:users']);
+            'email' => 'string|email|max:255']);
         
        
       
@@ -50,8 +58,10 @@ class ContactsController extends Controller
             'phonenumber' => $request->phonenumber,
             'fname' => $request->fname,
             'lname' => $request->lname,
-            'email' => $request->email
+            'email' => $request->email,
+            'created_by' => Auth::user()->id
         ]);
+
         $contact->save();
         return redirect()->route('contacts.index')->with('success','Contact Added Successfully');
     }
