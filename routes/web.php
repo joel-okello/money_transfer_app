@@ -12,9 +12,20 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('login');
+});
+Route::resource('contacts', 'ContactsController');
+Auth::routes();
+Route::get('/register', function () {
+    return view('register');
 });
 
-Auth::routes();
+Route::get('/contacts', function () {
+    return view('contacts');
+});
+Route::get('/transactions', function () {
+    return view('transactions');
+});
 
 Route::get('/home', 'HomeController@index')->name('home');
+
