@@ -25,7 +25,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-   protected $redirectTo = '/contacts';
+   protected $redirectTo = '/account';
 
     /**
      * Create a new controller instance.
@@ -40,7 +40,7 @@ class LoginController extends Controller
 
    protected function redirectTo()
 {
-    return '/contacts';
+    return '/account';
 }
 
     public function username()

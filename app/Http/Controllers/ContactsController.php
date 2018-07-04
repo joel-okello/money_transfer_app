@@ -15,11 +15,17 @@ class ContactsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+   public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index()
     {
         $account = null;
         $id = null;   
-         $contacts = DB::table('users')->where('created_by', '=', Auth::user()->id)
+         $contacts = DB::table('users')->where('created_by', '=', Auth::User()->id)
             ->leftJoin('accounts',   'accounts.user_id',  '=', 'users.id')
             ->select('users.*', 'accounts.*')
             ->get()->toArray();        

@@ -25,6 +25,6 @@ class HomeController extends Controller
     public function index()
     {
         
-        return view('contacts');
+        return redirect()->route('account.index');
     }
 }
