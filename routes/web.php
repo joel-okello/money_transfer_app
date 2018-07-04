@@ -25,7 +25,10 @@ Route::get('/register', function () {
 
 
 Route::get('/account_edit', function () {
-    return view('account_edit_add')->with('account');
+	$account = null;
+	$user_id_of_account = null;
+
+    return view('account_edit_add',compact('account','user_id_of_account'));
 });
 
 Route::get('/contact_edit', function () {

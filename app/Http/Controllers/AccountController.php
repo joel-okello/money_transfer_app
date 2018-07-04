@@ -32,8 +32,9 @@ class AccountController extends Controller
         $account = null;
         $id = null;   
         $accounts = DB::table('accounts')->where('user_id', '=', Auth::User()->id)->get()->toArray();
+        $user_id_of_account = null;
         
-        return view('account',compact('accounts','account','id'));
+        return view('account',compact('accounts','account','id','user_id_of_account'));
     }
 
     /**
@@ -97,8 +98,9 @@ class AccountController extends Controller
     {
         $account = accounts::find($id);
         $accounts= DB::table('accounts')->where('user_id', '=', Auth::user()->id)->get()->toArray();
+        $user_id_of_account = null;
 
-        return view('account_edit_add',compact('account','accounts','id'));
+        return view('account_edit_add',compact('account','accounts','id','user_id_of_account'));
     }
 
     /**
