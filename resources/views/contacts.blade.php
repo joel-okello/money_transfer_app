@@ -172,7 +172,7 @@
                   <th>Last Name</th>
                   <th>Account Type</th>
                   <th>Account Number</th>
-                  <th>Edit Contact</th>
+                  <th>Send Money</th>
                   <th>Delete </th>
                 </tr>
               </thead>
@@ -201,7 +201,7 @@
        </td>
 
         <td>@if($row->account_number)<a href="{{action('ContactsController@edit',$row->id)}}">
-          <button type="button" class="btn btn-success">Edit</button></a>@endif</td>
+          <button type="button" class="btn btn-success">Send Money</button></a>@endif</td>
         <td>@if($row->account_number)<form method="post" action="">
     {{csrf_field()}}
           <input type="hidden" name="_method" value="DELETE">
