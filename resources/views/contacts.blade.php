@@ -132,9 +132,37 @@
            <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
       </div>
     </div>
+
+
+
+
+
+
+
+        
 <div class="card mb-3">
         <div class="card-header">
-          <i class="fa fa-table"></i> Data Table Example</div>
+            @if(count($errors)>0)
+    <div class="alert alert-danger alert-dismissable">
+      <ul>
+        @foreach($errors->all() as $error)
+        <li>{{$error}}</li>
+        @endforeach
+      </ul>
+
+    </div>
+    @endif
+    @if(\Session::has('success'))
+    <div class="alert alert-success alert-dismissable">
+      {{(\Session::get('success'))}}
+    </div>
+    @endif
+          <i class="fa fa-table"></i>Your Contacts</div> 
+          <div class='right-button-margin'>
+            <br>
+           <a href="{{url('account_edit')}}" class='btn btn-success pull-right'>Create New Contact</a>
+           <br
+         </div>
         <div class="card-body">
           <div class="table-responsive">
             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
@@ -142,41 +170,45 @@
                 <tr>
                   <th>First Name</th>
                   <th>Last Name</th>
+                  <th>Account Type</th>
                   <th>Account Number</th>
-                  <th>Account Name</th>
-                  <th>Send money</th>
-                  <th>Add Account</th>
+                  <th>Edit Contact</th>
+                  <th>Delete </th>
                 </tr>
               </thead>
               
               <tbody>
-               
-                <tr>
-                  <td>OKello</td>
-                  <td>Joel Acaye</td>
-                  <td>12344555211</td>
-                  <td>Joel Okello</td>
-                  <td><a href="">
-          <button type="button" class="btn btn-success">SEND</button></a></td>
-                  <td><a href="">
-          <button type="button" class="btn btn-info">ADD ACCOUNT</button></a></td>
-                </tr>
-               
-                <tr>
-                  <td>OKello</td>
-                  <td>Joel Acaye</td>
-                  <td>12344555211</td>
-                  <td>Joel Okello</td>
-                  <td><a href="">
-          <button type="button" class="btn btn-success">SEND</button></a></td>
-                  <td><a href="">
-          <button type="button" class="btn btn-info">ADD ACCOUNT</button></a></td>
-                </tr>
-                
-              </tbody>
+
+
+
+             
+                   
+      @if($contacts)
+      @foreach($contacts as $row)
+      <tr>
+        <td>{{$row->fname}}</td>
+        <td>{{$row->lname}}</td>
+         <td>{{$row->account_type}}</td>
+         <td>{{$row->account_number}}</td>
+
+        <td><a href="">
+          <button type="button" class="btn btn-success">Edit</button></a></td>
+        <td><form method="post" action="">
+    {{csrf_field()}}
+          <input type="hidden" name="_method" value="DELETE">
+          <button type="submit" class="btn btn-danger" value="Edit">Delete</button>
+    </form> </td>
+
+      </tr>
+
+      @endforeach
+      @endif
+    </tbody>
             </table>
           </div>
         </div>
         <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
       </div>
       @endsection
+
+

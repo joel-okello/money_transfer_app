@@ -1,5 +1,5 @@
-@extends('layouts.app')
 
+@extends('layouts.template')
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
@@ -12,14 +12,14 @@
                         @csrf
 
                         <div class="form-group row">
-                            <label for="email" class="col-sm-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
+                            <label for="phonenumber" class="col-sm-4 col-form-label text-md-right">{{ __('Phone Number') }}</label>
 
                             <div class="col-md-6">
-                                <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required autofocus>
+                                <input id="phonenumber" type="text" class="form-control{{ $errors->has('phonenumber') ? ' is-invalid' : '' }}" name="phonenumber" value="{{ old('phonenumber') }}" required autofocus>
 
-                                @if ($errors->has('email'))
+                                @if ($errors->has('phonenumber'))
                                     <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('email') }}</strong>
+                                        <strong>{{ $errors->first('phonenumber') }}</strong>
                                     </span>
                                 @endif
                             </div>
@@ -57,6 +57,12 @@
 
                                 <a class="btn btn-link" href="{{ route('password.request') }}">
                                     {{ __('Forgot Your Password?') }}
+
+                                </a>
+
+                                <a class="btn btn-link" href="{{URL('/register')}}">
+                                    {{ __('Register New Account') }}
+                                    
                                 </a>
                             </div>
                         </div>
