@@ -11,7 +11,7 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
+   
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="https://fonts.gstatic.com">
@@ -19,6 +19,8 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="{{URL::asset('/intel/build/css/intlTelInput.css')}}">
+  <link rel="stylesheet" href="{{URL::asset('/intel/build/css/demo.css')}}">
 </head>
 <body>
     <div id="app">
@@ -75,5 +77,46 @@
             @yield('content')
         </main>
     </div>
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="{{URL::asset('/intel/build/js/intlTelInput.js')}}"></script>
+  <script>
+    $("#phone").intlTelInput({
+      // allowDropdown: false,
+      // autoHideDialCode: false,
+      // autoPlaceholder: "off",
+      // dropdownContainer: "body",
+      // excludeCountries: ["us"],
+      // formatOnDisplay: false,
+       geoIpLookup: function(callback) {
+         $.get("http://ipinfo.io", function() {}, "jsonp").always(function(resp) {
+           var countryCode = (resp && resp.country) ? resp.country : "";
+          callback(countryCode);
+        });
+      },
+      // hiddenInput: "full_number",
+      // initialCountry: "auto",
+      // localizedCountries: { 'de': 'Deutschland' },
+      // nationalMode: false,
+      //onlyCountries: ['ug', 'ke', 'rw'],
+      // placeholderNumberType: "MOBILE",
+      // preferredCountries: ['cn', 'jp'],
+      // separateDialCode: true,
+      utilsScript: "build/js/utils.js"
+    });
+
+    $("button").click(function(){
+    
+    
+}); 
+
+    $("#phone").blur(function(){
+    var countryData = $("#phone").intlTelInput("getSelectedCountryData");
+    document.getElementById("country").value = countryData.name;
+   
+});
+
+   
+  </script>
 </body>
+
 </html>

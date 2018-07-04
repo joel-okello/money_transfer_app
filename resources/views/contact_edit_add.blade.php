@@ -1,6 +1,7 @@
 
 @extends('layouts.template')
 @section('content')
+@if(!$contact)
 <div class="card mb-3">
         <div class="card-header">
 
@@ -8,13 +9,31 @@
 
 
 
+<div class="container">
+<div class="row">
+  <div class="col-md-12"> 
+  </br>
+</br>
+    <h4 align="center" class="page-header">Create Contact</h4>
+    @if(count($errors)>0)
+    <div class="alert alert-danger alert-dismissable">
+      <ul>
+        @foreach($errors->all() as $error)
+        <li>{{$error}}</li>
+        @endforeach
+      </ul>
+
+    </div>
+    @endif
+    @if(\Session::has('success'))
+    <div class="alert alert-success alert-dismissable">
+      {{(\Session::get('success'))}}
+    </div>
+    @endif
+    
 
 
-
-
-  @if(!$contact)
-    <h4 align="center" class="page-header">Create New Contact</h4>  
-<form method="POST" action="{{url('contacts')}}" aria-label="{{ __('Register Contact') }}">
+    <form method="POST" action="{{url('contacts')}}" aria-label="{{ __('Register') }}">
                         @csrf
 
                         <div class="form-group row">
@@ -49,7 +68,7 @@
                             <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Phone Number') }}</label>
 
                             <div class="col-md-6">
-                                <input id="phonenumber" type="text" class="form-control{{ $errors->has('phonenumber') ? ' is-invalid' : '' }}" name="phonenumber" value="{{ old('phonenumber') }}" required autofocus>
+                                 <input id="phone" type="tel" class="form-control{{ $errors->has('phonenumber') ? ' is-invalid' : '' }}" name="phonenumber" value="{{ old('phonenumber') }}" required >
 
                                 @if ($errors->has('phonenumber'))
                                     <span class="invalid-feedback" role="alert">
@@ -101,8 +120,21 @@
 
                             </div>
                         </div>
-                    </form>
-  
+                    </form> 
+   <br>
+
+</div>
+</div>
+</div>
+
+
+
+
+           <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+      </div>
+    </div>
+
+
 @endif
 
 
@@ -159,7 +191,7 @@
                             <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Country') }}</label>
 
                             <div class="col-md-6">
-                                <input id="country" type="text" class="form-control{{ $errors->has('country') ? ' is-invalid' : '' }}" name="country" value="{{ $account->country }}" required autofocus>
+                                <input id="country" type="text" class="form-control{{ $errors->has('country') ? ' is-invalid' : '' }}" name="country" value="{{ $account->country }}" required autofocus readonly="readonly">
 
                                 @if ($errors->has('country'))
                                     <span class="invalid-feedback" role="alert">

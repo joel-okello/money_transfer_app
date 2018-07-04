@@ -14,8 +14,29 @@
   <link href="/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
   <!-- Page level plugin CSS-->
   <link href="/vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
+
+
+
+
+ <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,600" rel="stylesheet" type="text/css">
+
+    <!-- Styles -->
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="{{URL::asset('/intel/build/css/intlTelInput.css')}}">
+  <link rel="stylesheet" href="{{URL::asset('/intel/build/css/demo.css')}}">
+
+
+
   <!-- Custom styles for this template-->
   <link href="/css/sb-admin.css" rel="stylesheet">
+
+  <style type="text/css">
+    .intl-tel-input {
+  position: relative;
+  display: inline-block; 
+  width: 100%;
+}
+  </style>
 </head>
 
 <body class="fixed-nav sticky-footer bg-dark" id="page-top">
@@ -291,7 +312,51 @@
       </div>
     </div>
     <!-- Bootstrap core JavaScript-->
-    <script src="vendor/jquery/jquery.min.js"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="{{URL::asset('/intel/build/js/intlTelInput.js')}}"></script>
+  <script>
+    $("#phone").intlTelInput({
+      // allowDropdown: false,
+      // autoHideDialCode: false,
+      // autoPlaceholder: "off",
+      // dropdownContainer: "body",
+      // excludeCountries: ["us"],
+      // formatOnDisplay: false,
+       geoIpLookup: function(callback) {
+         $.get("http://ipinfo.io", function() {}, "jsonp").always(function(resp) {
+           var countryCode = (resp && resp.country) ? resp.country : "";
+          callback(countryCode);
+        });
+      },
+      // hiddenInput: "full_number",
+      // initialCountry: "auto",
+      // localizedCountries: { 'de': 'Deutschland' },
+      // nationalMode: false,
+      //onlyCountries: ['ug', 'ke', 'rw'],
+      // placeholderNumberType: "MOBILE",
+      // preferredCountries: ['cn', 'jp'],
+      // separateDialCode: true,
+      utilsScript: "build/js/utils.js"
+    });
+
+    $("button").click(function(){
+    
+    
+}); 
+
+    $("#phone").blur(function(){
+    var countryData = $("#phone").intlTelInput("getSelectedCountryData");
+    document.getElementById("country").value = countryData.name;
+   
+});
+
+   
+  </script>
+</body>
+
+</html>
+   
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
     <!-- Core plugin JavaScript-->
     <script src="vendor/jquery-easing/jquery.easing.min.js"></script>

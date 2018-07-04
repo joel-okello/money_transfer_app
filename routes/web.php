@@ -17,14 +17,19 @@ Route::get('/', function () {
     return view('login');
 });
 
+
+
+
 Route::resource('contacts', 'ContactsController');
 Route::resource('account', 'AccountController');
+Route::resource('transactions', 'TransactionController');
 Route::get('/register', function () {
     return view('register');
 });
 
 
 Route::get('/account_edit', function () {
+	return view('intel');
 	$account = null;
 	$user_id_of_account = null;
 
@@ -37,9 +42,7 @@ Route::get('/contact_edit', function () {
 
 
 
-Route::get('/transactions', function () {
-    return view('transactions');
-});
+
 
 Route::get('/home', 'HomeController@index')->name('home');
 

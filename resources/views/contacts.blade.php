@@ -1,6 +1,7 @@
 
 @extends('layouts.template')
 @section('content')
+ @if(!$contacts)
 <div class="card mb-3">
         <div class="card-header">
 
@@ -67,7 +68,7 @@
                             <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Phone Number') }}</label>
 
                             <div class="col-md-6">
-                                <input id="phonenumber" type="text" class="form-control{{ $errors->has('phonenumber') ? ' is-invalid' : '' }}" name="phonenumber" value="{{ old('phonenumber') }}" required autofocus>
+                                 <input id="phone" type="tel" class="form-control{{ $errors->has('phonenumber') ? ' is-invalid' : '' }}" name="phonenumber" value="{{ old('phonenumber') }}" required >
 
                                 @if ($errors->has('phonenumber'))
                                     <span class="invalid-feedback" role="alert">
@@ -134,7 +135,7 @@
     </div>
 
 
-
+@endif
 
 
 
@@ -200,7 +201,7 @@
          
        </td>
 
-        <td>@if($row->account_number)<a href="{{action('ContactsController@edit',$row->id)}}">
+        <td>@if($row->account_number)<a href="{{action('TransactionController@edit',$row->acc_id)}}">
           <button type="button" class="btn btn-success">Send Money</button></a>@endif</td>
         <td>@if($row->account_number)<form method="post" action="">
     {{csrf_field()}}
