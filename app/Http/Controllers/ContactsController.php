@@ -26,8 +26,9 @@ class ContactsController extends Controller
         $account = null;   
          $contacts = DB::table('users')->where('created_by', '=', Auth::User()->id)
             ->leftJoin('accounts',   'accounts.user_id',  '=', 'users.id')
-            ->select('users.id','users.fname','users.lname', 'accounts.account_name','accounts.account_number','accounts.account_type')
+            ->select('users.id','users.fname','users.lname', 'accounts.account_name','accounts.account_number','accounts.account_type','accounts.id as acc_id')
             ->get()->toArray();  
+    
 
         return view('contacts',compact('contacts','contact','id'));
     }
@@ -81,6 +82,8 @@ class ContactsController extends Controller
     public function show($contacts)
     {
         dd($contacts);
+
+        $accounts = DB::table('accounts')->where('user_id', '=', Auth::User()->id)->get()->toArray();
     }
 
     /**
