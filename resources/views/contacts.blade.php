@@ -188,16 +188,25 @@
       <tr>
         <td>{{$row->fname}}</td>
         <td>{{$row->lname}}</td>
-         <td>{{$row->account_type}}</td>
-         <td>{{$row->account_number}}</td>
+         <td>@if($row->account_type){{$row->account_type}}
+         @endif
 
-        <td><a href="">
-          <button type="button" class="btn btn-success">Edit</button></a></td>
-        <td><form method="post" action="">
+         
+         @if(!$row->account_type)<a href="{{action('AccountController@show',$row->id)}}"> 
+          <button type="button" class="btn btn-success">Add Account</button></a>@endif
+       </td>
+         <td>@if($row->account_number){{$row->account_number}}
+         @endif
+         
+       </td>
+
+        <td>@if($row->account_number)<a href="{{action('ContactsController@edit',$row->id)}}">
+          <button type="button" class="btn btn-success">Edit</button></a>@endif</td>
+        <td>@if($row->account_number)<form method="post" action="">
     {{csrf_field()}}
           <input type="hidden" name="_method" value="DELETE">
           <button type="submit" class="btn btn-danger" value="Edit">Delete</button>
-    </form> </td>
+    </form> @endif</td>
 
       </tr>
 

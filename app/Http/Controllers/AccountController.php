@@ -65,6 +65,9 @@ class AccountController extends Controller
             'account_type' => $request->account_type,
             'user_id' => Auth::user()->id
         ]);
+
+        if($request->user_id)
+           $account->user_id = $request->user_id;  
         $account->save();
         return redirect()->route('account.index')->with('success','Account Added Successfully');
     }
@@ -77,7 +80,11 @@ class AccountController extends Controller
      */
     public function show($id)
     {
-        //
+        
+        $user_id_of_account = $id;
+        $account =null;
+        $accounts = null;
+        return view('account_edit_add',compact('accounts','account','id','user_id_of_account'));
     }
 
     /**

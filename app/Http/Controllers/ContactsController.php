@@ -23,12 +23,12 @@ class ContactsController extends Controller
 
     public function index()
     {
-        $account = null;
-        $id = null;   
+        $account = null;   
          $contacts = DB::table('users')->where('created_by', '=', Auth::User()->id)
             ->leftJoin('accounts',   'accounts.user_id',  '=', 'users.id')
-            ->select('users.*', 'accounts.*')
-            ->get()->toArray();        
+            ->select('users.id','users.fname','users.lname', 'accounts.account_name','accounts.account_number','accounts.account_type')
+            ->get()->toArray();  
+
         return view('contacts',compact('contacts','contact','id'));
     }
 
@@ -78,9 +78,9 @@ class ContactsController extends Controller
      * @param  \App\Contacts  $contacts
      * @return \Illuminate\Http\Response
      */
-    public function show(Contacts $contacts)
+    public function show($contacts)
     {
-        //
+        dd($contacts);
     }
 
     /**
@@ -89,9 +89,9 @@ class ContactsController extends Controller
      * @param  \App\Contacts  $contacts
      * @return \Illuminate\Http\Response
      */
-    public function edit(Contacts $contacts)
+    public function edit($contacts)
     {
-        //
+        dd($contacts);
     }
 
     /**

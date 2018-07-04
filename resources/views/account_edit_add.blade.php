@@ -15,8 +15,10 @@
   @if(!$account)
     <h4 align="center" class="page-header">Create Account</h4>  
     <form method="POST" action="{{url('account')}}" aria-label="{{ __('Register Account') }}">
-                        @csrf
-
+                        {{csrf_field()}}
+                        @if($user_id_of_account)  
+                        <input type="hidden" name="user_id" value="{{($user_id_of_account)}}">
+                        @endif
                         <div class="form-group row">
                             <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Account Name') }}</label>
 
