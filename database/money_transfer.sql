@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jul 03, 2018 at 12:46 PM
+-- Generation Time: Jul 05, 2018 at 11:02 AM
 -- Server version: 5.7.22-0ubuntu0.16.04.1
 -- PHP Version: 7.2.7-1+ubuntu16.04.1+deb.sury.org+1
 
@@ -31,10 +31,20 @@ CREATE TABLE `accounts` (
   `account_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `account_type` enum('bank_account','mobile_money') COLLATE utf8mb4_unicode_ci NOT NULL,
   `account_number` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `bank_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `registered_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `user_id` int(10) UNSIGNED NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `accounts`
+--
+
+INSERT INTO `accounts` (`id`, `account_name`, `account_type`, `account_number`, `bank_name`, `registered_name`, `user_id`, `created_at`, `updated_at`) VALUES
+(1, 'dfcu Bank Account', 'bank_account', '2344567778', NULL, NULL, 1, '2018-07-05 05:53:14', '2018-07-05 05:53:14'),
+(2, 'Tere Company', 'mobile_money', '088887777', NULL, NULL, 2, '2018-07-05 05:55:17', '2018-07-05 05:55:17');
 
 -- --------------------------------------------------------
 
@@ -53,10 +63,10 @@ CREATE TABLE `migrations` (
 --
 
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
-(5, '2014_10_12_000000_create_users_table', 1),
-(6, '2014_10_12_100000_create_password_resets_table', 1),
-(7, '2018_07_02_152117_create_accounts_table', 1),
-(8, '2018_07_02_152851_create_transactions_table', 1);
+(1, '2014_10_12_000000_create_users_table', 1),
+(2, '2014_10_12_100000_create_password_resets_table', 1),
+(3, '2018_07_02_152117_create_accounts_table', 2),
+(4, '2018_07_02_152851_create_transactions_table', 2);
 
 -- --------------------------------------------------------
 
@@ -84,6 +94,13 @@ CREATE TABLE `transactions` (
   `Created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Dumping data for table `transactions`
+--
+
+INSERT INTO `transactions` (`id`, `amount`, `sender_account`, `reciever_account`, `Created_at`) VALUES
+(1, '23000.00', 1, 2, '2018-07-05 08:55:40');
+
 -- --------------------------------------------------------
 
 --
@@ -109,7 +126,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `fname`, `lname`, `email`, `phonenumber`, `country`, `password`, `created_by`, `remember_token`, `created_at`, `updated_at`) VALUES
-(3, 'Joel', 'Okello', 'okellojoelacaye@gmail.com', '0777521185', 'Uganda', '$2y$10$riBe.49wfv5vXdx9l94D8uiJdd9AWBNvywUAAdh7k01gjJjweC/xu', NULL, 'lQHBghCFjXVJHIKevqvMq1N4vGOLSf4SmvxDxQOZeANKz6y1EdPM4ozgSZbU', '2018-07-03 07:38:44', '2018-07-03 07:38:44');
+(1, 'Joel', 'Okello', 'okellojoelacaye@gmail.com', '75118873', 'Uganda', '$2y$10$kGJcAWfpVK3rF.uq/18q9u2twXGZPt.RmmOsxx4sRiIyzPommNSmm', NULL, NULL, '2018-07-05 05:49:26', '2018-07-05 05:49:26'),
+(2, 'Jona', 'Musanyana', 'helo@email.com', '077899346', 'Uganda', NULL, '1', NULL, '2018-07-05 05:54:40', '2018-07-05 05:54:40');
 
 --
 -- Indexes for dumped tables
@@ -156,22 +174,22 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `accounts`
 --
 ALTER TABLE `accounts`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `transactions`
 --
 ALTER TABLE `transactions`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- Constraints for dumped tables
 --
