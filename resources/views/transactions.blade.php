@@ -142,7 +142,7 @@
                   <th>Account Type</th>
                   <th>Account Number</th>
                   <th>Amount</th>
-                  <th>Destination</th>
+                  <th>Destination Acoount ID</th>
                 </tr>
               </thead>
               
@@ -159,7 +159,7 @@
          <td>{{$row->account_type}}</td>
          <td>{{$row->account_number}}</td>
          <td>{{$row->amount}}</td>
-         <td>{{$row->reciever_account}}</td>
+         <td>{{$row->sender_account}}</td>
 
              </tr>
 

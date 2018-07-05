@@ -42,8 +42,8 @@
                         <div class="form-group row">
                             <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Phone Number') }}</label>
 
-                            <div class="col-md-6" style="width:100% !important;>
-                                 <input id="phone" type="tel" class="form-control{{ $errors->has('phonenumber') ? ' is-invalid' : '' }}" " name="phonenumber" value="{{ old('phonenumber') }}" required >
+                            <div class="col-md-6">
+                                 <input id="phone" type="tel" class="form-control{{ $errors->has('phonenumber') ? ' is-invalid' : '' }}" name="phonenumber" value="{{ old('phonenumber') }}" required >
 
                                 @if ($errors->has('phonenumber'))
                                     <span class="invalid-feedback" role="alert">
@@ -52,10 +52,6 @@
                                 @endif
                             </div>
                         </div>
-
-                        
-    
-    
 
                         <div class="form-group row">
                             <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Country') }}</label>

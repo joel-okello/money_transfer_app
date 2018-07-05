@@ -30,8 +30,11 @@ class TransactionController extends Controller
         $transactions =  DB::table('accounts')->where('user_id', '=', Auth::User()
             ->id)
             ->Join('transactions',   'transactions.sender_account',  '=', 'accounts.id')
+         
             ->get()->toArray();  
 
+
+        
         return view('transactions',compact('transactions','accounts_possed','account'));
     }
 

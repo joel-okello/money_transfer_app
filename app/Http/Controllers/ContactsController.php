@@ -115,8 +115,10 @@ class ContactsController extends Controller
      * @param  \App\Contacts  $contacts
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Contacts $contacts)
+    public function destroy($contacts)
     {
-        //
+        $contact = User::find($contacts); 
+        $contact ->delete();
+        return redirect()->route('contacts.index')->with('success','Contact Deleted Sucessfully');;
     }
 }

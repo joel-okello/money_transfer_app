@@ -333,7 +333,7 @@
       // initialCountry: "auto",
       // localizedCountries: { 'de': 'Deutschland' },
       // nationalMode: false,
-      //onlyCountries: ['ug', 'ke', 'rw'],
+      onlyCountries: ['ug', 'ke', 'rw'],
       // placeholderNumberType: "MOBILE",
       // preferredCountries: ['cn', 'jp'],
       // separateDialCode: true,

@@ -20,21 +20,6 @@
                         <input type="hidden" name="user_id" value="{{($user_id_of_account)}}">
                         @endif
                         <div class="form-group row">
-                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Account Name') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="account_name" type="text" class="form-control{{ $errors->has('account_name') ? ' is-invalid' : '' }}" name="account_name" value="{{ old('account_name') }}" required autofocus>
-
-                                @if ($errors->has('account_name'))
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('account_name') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-
-                         <div class="form-group row">
                             <label for="account_type" class="col-md-4 col-form-label text-md-right">{{ __('Select Account Type') }}</label>
 
                         <div class="col-md-6">
@@ -50,6 +35,22 @@
                                 @endif
                              </div>
                         </div>
+                        <div class="form-group row">
+                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Account Name') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="account_name" type="text" class="form-control{{ $errors->has('account_name') ? ' is-invalid' : '' }}" name="account_name" value="{{ old('account_name') }}" required autofocus>
+
+                                @if ($errors->has('account_name'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('account_name') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+
+                         
 
 
                         <div class="form-group row">
@@ -86,21 +87,6 @@
     {{csrf_field()}}
         <input type="hidden" name="_method" value="PATCH">
                         <div class="form-group row">
-                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Account Name') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="account_name" type="text" class="form-control{{ $errors->has('account_name') ? ' is-invalid' : '' }}" name="account_name" value="{{$account->account_name}}" required autofocus>
-
-                                @if ($errors->has('account_name'))
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('account_name') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-
-                         <div class="form-group row">
                             <label for="account_type" class="col-md-4 col-form-label text-md-right">{{ __('Select Account Type') }}</label>
 
                         <div class="col-md-6">
@@ -115,6 +101,22 @@
                                 @endif
                              </div>
                         </div>
+                        <div class="form-group row">
+                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Account Name') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="account_name" type="text" class="form-control{{ $errors->has('account_name') ? ' is-invalid' : '' }}" name="account_name" value="{{$account->account_name}}" required autofocus>
+
+                                @if ($errors->has('account_name'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('account_name') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+
+                         
 
 
                         <div class="form-group row">

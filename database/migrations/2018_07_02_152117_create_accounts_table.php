@@ -13,15 +13,17 @@ class CreateAccountsTable extends Migration
      */
     public function up()
     {
-        Schema::create('accounts', function (Blueprint $table) {
+       Schema::create('accounts', function (Blueprint $table) {
             $table->increments('id');
             $table->string('account_name');
             $table->enum('account_type', [ 'bank_account', 'mobile_money']);
             $table->string('account_number');
+            $table->string('bank_name')->nullable();
+            $table->string('registered_name')->nullable();
             $table->unsignedInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
-        });
+            });
     }
 
     /**
@@ -32,5 +34,6 @@ class CreateAccountsTable extends Migration
     public function down()
     {
         Schema::dropIfExists('accounts');
+        
     }
 }

@@ -29,7 +29,7 @@ Route::get('/register', function () {
 
 
 Route::get('/account_edit', function () {
-	return view('intel');
+	
 	$account = null;
 	$user_id_of_account = null;
 
