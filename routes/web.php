@@ -19,7 +19,9 @@ Route::get('/', function () {
 
 
 
-
+Route::get('/work', function () {
+    return view('work');
+});
 Route::resource('contacts', 'ContactsController');
 Route::resource('account', 'AccountController');
 Route::resource('transactions', 'TransactionController');

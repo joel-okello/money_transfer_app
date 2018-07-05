@@ -18,7 +18,7 @@
 
 
 
- <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,600" rel="stylesheet" type="text/css">
+ <!--<link href="https://fonts.googleapis.com/css?family=Raleway:300,400,600" rel="stylesheet" type="text/css">-->
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
@@ -350,6 +350,19 @@
     document.getElementById("country").value = countryData.name;
    
 });
+
+
+    $("#account_name").blur(function(){
+    alert("Hello Wortld");
+    var countryData = $("#phone").intlTelInput("getSelectedCountryData");
+    document.getElementById("country").value = countryData.name;
+   
+});
+
+
+    $(".account_type").change(function(){
+        alert("The text has been changed.");
+    });
 
    
   </script>

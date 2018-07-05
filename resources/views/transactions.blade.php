@@ -21,7 +21,7 @@
                           <option selected>Choose Account </option>
 
                            @foreach($accounts_possed as $row)
-                          <option value="{{$row->id}}">{{$row->account_name}}</option>
+                          <option value="{{$row->user_id}}">{{$row->account_name}}</option>
                           @endforeach
                         </select>
 
@@ -139,27 +139,23 @@
 
                 <tr>
                   <th>Origin Account</th>
-                  <th>Account Type</th>
-                  <th>Account Number</th>
                   <th>Amount</th>
-                  <th>Destination Acoount ID</th>
+                  <th>Receivers Name</th>
+                  <th>Receivers Account</th>
                 </tr>
               </thead>
               
               <tbody>
 
-
-
-             
                    
       @if($transactions)
       @foreach($transactions as $row)
       <tr>
         <td>{{$row->account_name}}</td>
-         <td>{{$row->account_type}}</td>
-         <td>{{$row->account_number}}</td>
          <td>{{$row->amount}}</td>
-         <td>{{$row->sender_account}}</td>
+         <td>{{$row->reciever_fn}}</td>
+         <td>{{$row->reciever_ac}}</td>
+         
 
              </tr>
 

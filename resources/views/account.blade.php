@@ -5,7 +5,17 @@
 
 
 
+<script type="text/javascript">
+    
 
+    var obj = <?php echo json_encode($accounts); ?>;
+    
+    for(var i = 0;i<obj.length<i++)
+    {
+       alert(obj[i]) ;
+    }
+ 
+</script>
         
 <div class="card mb-3">
         <div class="card-header">
