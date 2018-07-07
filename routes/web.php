@@ -22,6 +22,13 @@ Route::get('/', function () {
 Route::get('/work', function () {
     return view('work');
 });
+
+
+Route::get('/new', function () {
+	$account=null;
+	$user_id_of_account = null;
+    return view('new',compact('account','user_id_of_account'));
+});
 Route::resource('contacts', 'ContactsController');
 Route::resource('account', 'AccountController');
 Route::resource('transactions', 'TransactionController');

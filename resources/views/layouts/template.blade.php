@@ -49,33 +49,33 @@
     <div class="collapse navbar-collapse" id="navbarResponsive">
       <ul class="navbar-nav navbar-sidenav" id="exampleAccordion">
         <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Manage Accounts">
-          <a class="nav-link" href="account">
+          <a class="nav-link" href="{{URL('/account')}}">
             <i class="fa fa-fw fa-dashboard"></i>
             <span class="nav-link-text">Manage Accounts</span>
           </a>
         </li>
         <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Contact List">
-          <a class="nav-link" href="contacts">
+          <a class="nav-link" href="{{URL('/contacts')}}">
             <i class="fa fa-fw fa-dashboard"></i>
             <span class="nav-link-text">Contact List</span>
           </a>
         </li>
         <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Charts">
-          <a class="nav-link" href="transactions">
+          <a class="nav-link" href="{{URL('/transactions')}}">
             <i class="fa fa-fw fa-area-chart"></i>
             <span class="nav-link-text">Transactions</span>
           </a>
         </li>
-        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Tables">
-          <a class="nav-link" href="tables.html">
-            <i class="fa fa-fw fa-table"></i>
-            <span class="nav-link-text">Register New Account</span>
+        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Charts">
+          <a class="nav-link" href="{{URL('/new')}}"">
+            <i class="fa fa-fw fa-area-chart"></i>
+            <span class="nav-link-text">Send Money</span>
           </a>
         </li>
         <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Components">
-          <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseComponents" data-parent="#exampleAccordion">
+          <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="{{URL('/new')}}" >
             <i class="fa fa-fw fa-wrench"></i>
-            <span class="nav-link-text">Components</span>
+            <span class="nav-link-text">Send MOney</span>
           </a>
           <ul class="sidenav-second-level collapse" id="collapseComponents">
             <li>
@@ -352,19 +352,124 @@
 });
 
 
-    $("#account_name").blur(function(){
-    alert("Hello Wortld");
+    $("#account_number4").blur(function(){
+    
+   $("#owners_account").show();
+});
+
+
+$("#account_number5").blur(function(){
+    
+   $("#owners_account").show();
+});
+
+
+$("#reg_user_nam").blur(function(){
+  $("#owners_account").show();
+   
+   
+});
+
+
+$("account_number").blur(function(){
+ 
+    $("#owners_account").show();
+   
+});
+
+    $(".account_type").change(function(){
+
+    });
+
+    $( "#tab_receiver_bank" ).click(function() {
+
+$(".senderbk").hide();
+   $(".sendermm").hide();
+  $(".receiver_mm").hide();
+ 
+    $(".receiver_bk").show();
+     $("#owners_account").show();
+ 
+  document.getElementById("raccount_type").value = "bank_account";
+  
+});
+
+
+    $( "#tab_receiver_mm" ).click(function() {
+    
+
+  $(".senderbk").hide();
+   $(".sendermm").hide();
+  $(".receiver_bk").hide();
+  
+  $(".receiver_mm").show();
+  $("#owners_account").show();
+   
+ 
+  document.getElementById("raccount_type").value = "mobile_money";
+  
+});
+
+
+   $(".account_type").change(function(){
+
+    });
+
+    $("#tab_sender_mm").click(function() {
+$(".senderbk").hide();
+$(".sendermm").show();
+   
+ 
+  document.getElementById("saccount_type").value = "mobile_money";
+  
+});
+
+
+    $("#tab_sender_bank").click(function() {
+   $(".sendermm").hide();
+   $(".senderbk").show();
+
+   
+ 
+  document.getElementById("saccount_type").value = "bank_account";
+  
+});
+
+$( document ).ready(function() {
+;
+  $(".receiver_bk").hide();
+  $("#owners_account").hide();
+  $(".receiver_mm").hide();
+  $(".senderbk").hide();
+   $(".sendermm").hide();
+});
+
+
+$("#phone").blur(function(){
     var countryData = $("#phone").intlTelInput("getSelectedCountryData");
     document.getElementById("country").value = countryData.name;
    
 });
 
 
-    $(".account_type").change(function(){
-        alert("The text has been changed.");
-    });
-
+$("#account_number4").blur(function(){
+  
+      
+    var countryData = $("#phone").intlTelInput("getSelectedCountryData");
+    document.getElementById("country").value = countryData.name;
    
+});
+$("#sendbk3").blur(function(){
+    $("#owners_account").show();
+   
+});
+
+
+$("#account_number1").blur(function(){
+    $("#owners_account").show();
+   
+});
+
   </script>
 </body>
 

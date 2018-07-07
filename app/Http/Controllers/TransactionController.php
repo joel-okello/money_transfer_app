@@ -48,15 +48,14 @@ class TransactionController extends Controller
         $account = accounts::find($id);
         $userinfo = User::find($account->user_id);
         $accounts_possed = DB::table('accounts')->where('user_id', '=', Auth::User()->id)->get()->toArray(); 
-
-
         return view('transactions',compact('account','userinfo','accounts_possed','id'));
     }
 
 
 
     public function store(Request $request)
-    {        
+    {     
+          
         $this->validate($request,['sending_acc' => 'required|string|max:3','receiving_acc' => 'required|string|max:3','amount' => 'required|string|max:255']);
 
         $transactions = new transactions([ 'sender_account' => $request->sending_acc,'reciever_account' => $request->receiving_acc,'amount' => $request->amount,
@@ -64,13 +63,7 @@ class TransactionController extends Controller
 
 
         
-            $transactions->amount = $this->change_the_currency($request->sending_acc,$request->receiving_acc,$request->amount);
         
-       
-      
-        
-
-
         $transactions->save();
         return redirect()->route('transactions.index')->with('success','Transaction completed Successfully');
     }
@@ -139,7 +132,14 @@ class TransactionController extends Controller
      */
     public function create()
     {
-        //
+        $transactions =  DB::table('accounts')->where('accounts.user_id', '=', Auth::User()
+            ->id)
+            ->Join('transactions',   'transactions.sender_account',  '=', 'accounts.id')
+            ->join('accounts as reciever_acc', 'transactions.reciever_account','=','reciever_acc.id')
+            ->join('users as reciever','reciever_acc.user_id','=','reciever.id')
+            ->select('sender_account as sender_ac', 'reciever.fname as reciever_fn', 'reciever_acc.account_name as reciever_ac','amount','accounts.account_name')
+        
+            ->get()->toArray();  
     }
 
     /**

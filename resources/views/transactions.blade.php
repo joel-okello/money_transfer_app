@@ -14,14 +14,14 @@
  
                         
                         <div class="form-group row">
-                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Sending Account') }}</label>
+                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('From Account') }}</label>
 
                             <div class="col-md-6">
                           <select name="sending_acc" class="account_type" style="width: 100%">
                           <option selected>Choose Account </option>
-
-                           @foreach($accounts_possed as $row)
-                          <option value="{{$row->user_id}}">{{$row->account_name}}</option>
+                            
+                           @foreach($accounts_possed as $row1)
+                          <option value="{{$row1->id}}">{{$row1->account_name}}</option>
                           @endforeach
                         </select>
 

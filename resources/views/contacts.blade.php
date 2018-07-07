@@ -38,6 +38,7 @@
                   <th>Account Type</th>
                   <th>Account Number</th>
                   <th>Send Money</th>
+                  <th>Register New Account</th>
                 </tr>
               </thead>
               
@@ -66,7 +67,10 @@
 
         <td>@if($row->account_number)<a href="{{action('TransactionController@edit',$row->acc_id)}}">
           <button type="button" class="btn btn-success">Send Money</button></a>@endif</td>
-        
+
+          <td>@if($row->account_number)<a href="{{action('AccountController@show',$row->id)}}">
+          <button type="button" class="btn btn-success">Add New Account</button></a>@endif</td>
+
 
       </tr>
 

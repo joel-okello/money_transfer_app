@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Auth;
 Use DB;
 Use App\User;
+Use App\transactions;
 
 class AccountController extends Controller
 {
@@ -55,7 +56,70 @@ class AccountController extends Controller
      */
     public function store(Request $request)
     {
+           
+        if($request->user_type == 'new_user')
+       {
+        //register receiceiver as a contact
+                //if receiver phone is null make country null invalid
+         $receiver_country = ($request->rphonenumber) ? $request->rcountry:"";
+         $contact = new User([
+            'country' => $receiver_country,
+            'phonenumber' => $request->rphonenumber,
+            'fname' => strstr($request->recname, ' ', true),
+            'lname' => strstr($request->recname, ' '),
+            'email' => $request->email,
+            'created_by' => Auth::user()->id
+        ]);
+  
+        $contact->save();        
+
+        //register an account for logged in user
+            //if acc type is mobile acc number is phone number
+        $sender_account_number = ($request->saccount_type=="mobile_money")?$sender_account_number = $request->sphonenumber : $sender_account_number = $request->saccount_number;
+        $sender_account = new accounts([
+
+            'account_name' => ($request->saccount_name)?$request->saccount_name:$request->name,
+            'account_number' => $sender_account_number,
+            'account_type' => $request->saccount_type,
+            'user_id' => Auth::user()->id
+        ]);
+
+      $sender_account->save();
+      $sender_account_id = DB::table('accounts')->orderBy('id', 'desc')->first();
+
+
+    //register an account for receiver 
+            //if acc type is mobile acc number is phone number
+      $receiver_account_number = ($request->raccount_type=="mobile_money")?$receiver_account_number = $request->rphonenumber:$receiver_account_number = $request->raccount_number;
+      $receiver_account = new accounts([
+
+            'account_name' => ($request->raccount_name)?$request->raccount_name:$request->rregusername,
+            'account_number' => $receiver_account_number,
+            'account_type' => $request->saccount_type,
+            'user_id' => $contact->id
+        ]);
+      $receiver_account->save();
+   
+
+
+     //register transaction
+       $transaction = new transactions([ 'sender_account' => $sender_account->id,'reciever_account' => $receiver_account->id,'amount' => $request->amount,
+        ]);
+       $transaction->save();
+
+      }
+         
+       
             
+
+
+
+
+//create an account for user
+
+
+//create a transaction
+
         $this->validate($request,['account_name' => 'required', 'account_number' => 'required', 'account_type' => 'required']);
         
        
@@ -66,7 +130,6 @@ class AccountController extends Controller
             'account_type' => $request->account_type,
             'user_id' => Auth::user()->id
         ]);
-
         if($request->user_id)
            $account->user_id = $request->user_id;  
         $account->save();
