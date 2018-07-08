@@ -34,8 +34,17 @@ class AccountController extends Controller
         $id = null;   
         $accounts = DB::table('accounts')->where('user_id', '=', Auth::User()->id)->get()->toArray();
         $user_id_of_account = null;
-        
+
+
+
+        if(!$accounts){
         return view('account',compact('accounts','account','id','user_id_of_account'));
+    }
+        else 
+        {
+             return redirect()->route('old');
+        }
+
     }
 
     /**
@@ -56,7 +65,7 @@ class AccountController extends Controller
      */
     public function store(Request $request)
     {
-           
+          
         if($request->user_type == 'new_user')
        {
         //register receiceiver as a contact

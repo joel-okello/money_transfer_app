@@ -389,6 +389,9 @@ $(".senderbk").hide();
  
     $(".receiver_bk").show();
      $("#owners_account").show();
+     $(".option_r_a_type").hide();
+
+     $(".existing_account").show();
  
   document.getElementById("raccount_type").value = "bank_account";
   
@@ -404,9 +407,27 @@ $(".senderbk").hide();
   
   $(".receiver_mm").show();
   $("#owners_account").show();
+  $(".option_r_a_type").hide();
+  $(".existing_account").show();
    
  
   document.getElementById("raccount_type").value = "mobile_money";
+  
+});
+
+     $( ".old_rec_mm" ).click(function() {
+    
+   
+ $(".sendbtn").show();
+  document.getElementById("raccount_type").value = "mobile_money";
+  
+});
+
+        $( ".old_rec_bb" ).click(function() {
+    
+   
+ $(".sendbtn").show();
+  document.getElementById("raccount_type").value = "bank_account";
   
 });
 
@@ -436,12 +457,14 @@ $(".sendermm").show();
 });
 
 $( document ).ready(function() {
-;
+
   $(".receiver_bk").hide();
   $("#owners_account").hide();
   $(".receiver_mm").hide();
   $(".senderbk").hide();
    $(".sendermm").hide();
+    $(".sendbtn").hide();
+    $(".receiver_select").hide();
 });
 
 
@@ -469,6 +492,79 @@ $("#account_number1").blur(function(){
     $("#owners_account").show();
    
 });
+
+
+ $('#contacts_id').change(function(){
+  
+ var contact_id = $( "#contacts_id" ).val();
+
+   
+ if(contact_id==""){
+   $(".sendbtn").hide();
+  }
+  else if(contact_id=="new")
+  {
+
+    $(".sendbtn").hide();
+   $(".receiver_select").show();
+   $(".existing_account").hide();
+    $(".receiver_acc_select").hide();
+  }
+  else{
+    $(".receiver_select").show();
+    $(".sendbtn").hide();
+   $(".receiver_select").hide();
+   $(".existing_account").show();
+    $(".receiver_acc_select").show();
+    $(".receiver_mm").hide();
+    $(".receiver_bk").hide();
+    
+   
+  
+      $.ajax({
+        url: "old1",
+        type: "get", //send it through get method
+        data: { 
+          contact_id:contact_id
+        },
+        success: function(response,status) {
+
+          document.getElementById("receivers_account").innerHTML = response;   
+        },
+        error: function(xhr) {
+          alert("Data: " + xhr );
+        }
+      });
+    }
+ });
+
+
+
+  $('#receivers_account').change(function(){
+  
+ var account_id = $( "#receivers_account" ).val();
+ alert("The account is"+account_id);
+  if(account_id==""){
+    alert("The account is nan"+account_id);
+   $(".sendbtn").hide();
+  }
+  else if(account_id=="new")
+  {
+
+   $(".receiver_select").show();
+   $(".existing_account").hide();
+    $(".receiver_acc_select").hide();
+     
+  }
+  else{
+    alert("The account is old"+account_id);
+    $(".old_receiver").show();
+    $(".sendbtn").show();
+   
+  }
+
+      
+ });
 
   </script>
 </body>

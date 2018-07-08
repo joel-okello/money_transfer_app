@@ -19,16 +19,14 @@ Route::get('/', function () {
 
 
 
-Route::get('/work', function () {
-    return view('work');
-});
+
+Route::get('old1', 'Olduser@test');
+Route::get('old', 'Olduser@index')->name('old');
+Route::post('old', 'Olduser@store');
+
+Route::post('old/fetch', 'Olduser@fetch')->name('old.fetch');
 
 
-Route::get('/new', function () {
-	$account=null;
-	$user_id_of_account = null;
-    return view('new',compact('account','user_id_of_account'));
-});
 Route::resource('contacts', 'ContactsController');
 Route::resource('account', 'AccountController');
 Route::resource('transactions', 'TransactionController');
@@ -36,14 +34,6 @@ Route::get('/register', function () {
     return view('register');
 });
 
-
-Route::get('/account_edit', function () {
-	
-	$account = null;
-	$user_id_of_account = null;
-
-    return view('account_edit_add',compact('account','user_id_of_account'));
-});
 
 Route::get('/contact_edit', function () {
     return view('contact_edit_add')->with('contact');
