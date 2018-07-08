@@ -14,7 +14,7 @@
   <link href="/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
   <!-- Page level plugin CSS-->
   <link href="/vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
-
+<script src="{{URL::asset('js/jquery-3.3.1.min.js')}}"></script>
 
 
 
@@ -313,14 +313,13 @@
     </div>
     <!-- Bootstrap core JavaScript-->
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    
   <script src="{{URL::asset('/intel/build/js/intlTelInput.js')}}"></script>
   <script>
     $("#phone").intlTelInput({
       // allowDropdown: false,
       // autoHideDialCode: false,
-      // autoPlaceholder: "off",
-      // dropdownContainer: "body",
+      // autoPlaceholder: "off", // dropdownContainer: "body", 
       // excludeCountries: ["us"],
       // formatOnDisplay: false,
        geoIpLookup: function(callback) {
