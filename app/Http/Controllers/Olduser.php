@@ -9,7 +9,7 @@ Use App\User;
 Use App\Contacts;
 Use App\transactions;
 Use App\accounts;
-
+use Hash;
 class Olduser extends Controller
 {
 
@@ -18,7 +18,8 @@ class Olduser extends Controller
 
     public function index()
     {
-        
+         
+    
          $receiver = DB::table('users')->where('created_by', '=', Auth::User()->id)
             ->get()->toArray();  
            

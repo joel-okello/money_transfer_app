@@ -37,13 +37,7 @@ class AccountController extends Controller
 
 
 
-        if(!$accounts){
         return view('account',compact('accounts','account','id','user_id_of_account'));
-    }
-        else 
-        {
-             return redirect()->route('old');
-        }
 
     }
 

@@ -17,9 +17,6 @@ Route::get('/', function () {
     return view('login');
 });
 
-
-
-
 Route::get('old1', 'Olduser@test');
 Route::get('old', 'Olduser@index')->name('old');
 Route::post('old', 'Olduser@store');
